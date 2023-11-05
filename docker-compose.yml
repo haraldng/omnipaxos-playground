@@ -1,0 +1,99 @@
+version: "3.9"
+
+x-common-variables: &common-variables
+  RUST_BACKTRACE: 1
+  NODES: "[1, 2, 3, 4, 5]"
+  CARGO_UNSTABLE_SPARSE_REGISTRY: true
+
+services:
+  coordinator:
+    image: omnipaxos/playground_coordinator
+    container_name: coordinator
+    hostname: net
+    environment:
+      <<: *common-variables
+    ports:
+      - "8012:8012"
+      - "8013:8013"
+      - "8014:8014"
+      - "8015:8015"
+      - "8021:8021"
+      - "8023:8023"
+      - "8024:8024"
+      - "8025:8025"
+      - "8031:8031"
+      - "8032:8032"
+      - "8034:8034"
+      - "8035:8035"
+      - "8041:8041"
+      - "8042:8042"
+      - "8043:8043"
+      - "8045:8045"
+      - "8051:8051"
+      - "8052:8052"
+      - "8053:8053"
+      - "8054:8054"
+    stdin_open: true
+    tty: true
+  
+  s1:
+    image: omnipaxos/playground_server
+    container_name: s1
+    hostname: s1
+    environment:
+      <<: *common-variables
+      PID: 1
+    depends_on:
+      - coordinator
+    stdin_open: true
+    tty: true
+
+
+  s2:
+    image: omnipaxos/playground_server
+    container_name: s2
+    hostname: s2
+    environment:
+      <<: *common-variables
+      PID: 2
+    depends_on:
+      - coordinator
+    stdin_open: true
+    tty: true
+
+  s3:
+    image: omnipaxos/playground_server
+    container_name: s3
+    hostname: s3
+    environment:
+      <<: *common-variables
+      CARGO_UNSTABLE_SPARSE_REGISTRY: true
+      PID: 3
+    depends_on:
+      - coordinator
+    stdin_open: true
+    tty: true
+
+  s4:
+    image: omnipaxos/playground_server
+    container_name: s4
+    hostname: s4
+    environment:
+      <<: *common-variables
+      PID: 4
+    depends_on:
+      - coordinator
+    stdin_open: true
+    tty: true
+
+  s5:
+    image: omnipaxos/playground_server
+    container_name: s5
+    hostname: s5
+    environment:
+      <<: *common-variables
+      PID: 5
+    depends_on:
+      - coordinator
+    stdin_open: true
+    tty: true
