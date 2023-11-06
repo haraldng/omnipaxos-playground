@@ -1,4 +1,7 @@
+![preview](preview.gif)
+
 # OmniPaxos Playground
+An interactive dashboard for [OmniPaxos](https://omnipaxos.com/). OmniPaxos is a Rust library used for building highly-available distributed systems. Users can input operations and simulate network failures to get a visualization of the behavior of OmniPaxos.
 
 ## Requirements
 - [Docker Compose](https://docs.docker.com/compose/install/)
@@ -8,11 +11,13 @@ Run and attach to the playground:
 ```bash
 $ ./playground.sh attach
 ```
+(exit by pressing 'q' or 'esc')
+
 Stop the playground:
 ```bash
 $ ./playground kill
 ```
-Attach to servers
+Attach to dashboard of individual servers (s1, s2, ... , s5)
 ```bash
 $ docker attach s1
 ```
