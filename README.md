@@ -31,3 +31,6 @@ $ docker attach s1
 - Set connections: `connection <server1> <server2> <true | false>`
 - Disconnect server from all other servers: `connection <server> false`
 - Restore all connections: `scenario restore`
+
+## Credits
+Kudos to the maintainers and contributors of the [ratatui](https://ratatui.rs/) crate that enabled us to build the OmniPaxos dashboard in Rust.
